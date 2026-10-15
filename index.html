@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <title>MS Project Viewer</title>
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand"><span class="logo" aria-hidden="true">▤</span> MS Project Viewer <span class="tag">read-only</span></div>
+      <button id="open-btn" class="primary" data-testid="open">Open file…</button>
+      <input id="file-input" type="file" accept=".mpp,.mpt,.xml,.mpx,application/vnd.ms-project,text/xml,application/xml" hidden data-testid="file-input" />
+      <label class="reader">Reader
+        <select id="reader-select" data-testid="reader"><option value="auto">Auto (best for the file)</option></select>
+      </label>
+      <span class="privacy" title="Files are read with the browser's File API. The page's security policy blocks all network requests.">🔒 Files never leave your browser</span>
+    </header>
+
+    <div id="status" class="status info" role="status">Open a Microsoft Project file (.mpp, .mpt, or Project XML from File › Save As › XML), or drop one on this page. It is read on this device; nothing is uploaded.</div>
+
+    <main>
+      <section class="project-head">
+        <h1 id="project-title">No file open</h1>
+        <div id="project-meta" class="meta"></div>
+      </section>
+      <nav class="tabs" role="tablist">
+        <button data-tab="gantt" aria-selected="true">Gantt</button>
+        <button data-tab="tasks" aria-selected="false">Tasks <span class="count" id="count-tasks">0</span></button>
+        <button data-tab="links" aria-selected="false">Dependencies <span class="count" id="count-links">0</span></button>
+        <button data-tab="resources" aria-selected="false">Resources <span class="count" id="count-resources">0</span></button>
+        <span id="gantt-tools" class="gantt-tools">
+          <label>Zoom <select id="zoom"><option value="day">Days</option><option value="week" selected>Weeks</option><option value="month">Months</option><option value="quarter">Quarters</option><option value="year">Years</option></select></label>
+          <button id="expand" class="small">Expand all</button><button id="collapse" class="small">Collapse all</button>
+        </span>
+      </nav>
+      <div class="panels">
+        <div class="tab-panel" id="tab-gantt"><div id="gantt" data-testid="gantt"></div></div>
+        <div class="tab-panel scroll" id="tab-tasks" hidden></div>
+        <div class="tab-panel scroll" id="tab-links" hidden></div>
+        <div class="tab-panel scroll" id="tab-resources" hidden></div>
+        <aside id="details" class="details" hidden></aside>
+      </div>
+    </main>
+    <footer>MS Project Viewer · reads files locally with mpxj-ts (LGPL, port of MPXJ) · Gantt by DHTMLX Gantt Community (MIT) · see README for licences</footer>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.vite/
+*.log
+.DS_Store
+# never commit real plans: only public samples belong in test-files/
+*.mpp.local
+private-files/
