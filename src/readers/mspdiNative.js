@@ -95,7 +95,7 @@ export function readMspdiXml(xmlText) {
     if (uid === null || uid === 0 || bool(r, 'IsNull') || !text(r, 'Name')) continue;
     resources.push({
       uniqueId: uid, id: num(r, 'ID') ?? uid, name: text(r, 'Name'), initials: text(r, 'Initials'), group: text(r, 'Group'),
-      email: text(r, 'EmailAddress'), type: RESOURCE_TYPES[num(r, 'Type') ?? 1] || 'Work', maxUnits: num(r, 'MaxUnits'),
+      email: text(r, 'EmailAddress'), type: bool(r, 'IsCostResource') ? 'Cost' : RESOURCE_TYPES[num(r, 'Type') ?? 1] || 'Work', // Project marks cost resources with IsCostResource (Type stays 0) maxUnits: num(r, 'MaxUnits'),
       standardRate: num(r, 'StandardRate'), rateUnits: 'h', cost: num(r, 'Cost'),
       work: (() => { const h = isoHours(text(r, 'Work')); return h; })(), notes: text(r, 'Notes'), calendar: num(r, 'CalendarUID'),
     });
