@@ -17,6 +17,8 @@ browser. Click **Open file…**, pick a `.mpp` (or Project XML) file, and see:
 It is a static site with no server, meant to be hosted on GitHub Pages.
 Nothing can be edited or saved.
 
+A proposed plan for adding editing is in [docs/editor-plan.md](docs/editor-plan.md) (not built yet).
+
 ## Privacy: files never leave your browser
 
 - The file is read with the browser's File API and parsed in JavaScript on
